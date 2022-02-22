@@ -1,1 +1,1 @@
-binaryTreePaths
+sumOfLeftLeaves
