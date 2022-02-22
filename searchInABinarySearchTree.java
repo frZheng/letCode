@@ -1,13 +1,9 @@
 //import javax.swing.tree.TreeNode;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 import Tree.TreeNode;
 
-// 没能写出来
-public class  invertBinaryTree {
+public class searchInABinarySearchTree {
 
 
     private static class Solution {
@@ -15,18 +11,19 @@ public class  invertBinaryTree {
         public Solution() {
         }
 
-        public TreeNode invertTree(TreeNode root) {
-            if(root==null)
-                return root;
-            TreeNode treeNode = new TreeNode();
-            treeNode = root.left;
-            root.left = root.right;
-            root.right = treeNode;
-            invertTree(root.left);
-            invertTree(root.right);
+
+        public TreeNode searchBST(TreeNode root, int val) {
+            if(root == null)
+                return null;
+            if(root.val > val)
+                return searchBST(root.left, val);
+            if(root.val < val)
+                return searchBST(root.right, val);
             return root;
         }
     }
+
+
 
     public static void main(String Args[]) {
 //        System.out.println("hello word");
@@ -43,8 +40,8 @@ public class  invertBinaryTree {
         treeNode2.setRight(treeNode4);
 
         Solution solution = new Solution();
-        TreeNode root = solution.invertTree(treeNode);
-        System.out.println(root);
+        TreeNode lists = solution.searchBST(treeNode, 1);
+        System.out.println(lists);
 
 
     }
