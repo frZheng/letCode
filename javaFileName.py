@@ -24,8 +24,10 @@ def find_all(source, target):
 source = ""
 with open("fin.txt","r") as fin:
     source = fin.readlines()[0]
+
 if source[-1] == "/":
     source=source[:-1]
+source = source.split("/")[-1]
 print(source)
 # source = "binary-tree-level-order-traversal"
 res = find_all(source,"-")
