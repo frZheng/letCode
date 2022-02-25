@@ -28,6 +28,7 @@ public class lastStoneWeightIi {
             return sum - (dp[target] + dp[target]);
         }
     }
+
     public static void main(String Args[]) {
         Solution solution = new Solution();
         int[] stones ={2,7,4,1,8,1};
