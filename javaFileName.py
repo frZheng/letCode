@@ -27,7 +27,10 @@ with open("fin.txt","r") as fin:
 
 if source[-1] == "/":
     source=source[:-1]
+    
+print("\n", " "*10, "//web", source, "\n")
 source = source.split("/")[-1]
+
 print(source)
 # source = "binary-tree-level-order-traversal"
 res = find_all(source,"-")
