@@ -1,1 +1,1 @@
-isSubsequence
+distinctSubsequences
