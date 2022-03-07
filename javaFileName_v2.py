@@ -56,7 +56,7 @@ with open("fileName.txt","w") as fout:
     fout.write(des)
     
 with open("sql/{}.sql".format(des),"w") as fout:
-    fout.write("#web: ")    
+    fout.write("-- web: ")    
     fout.write(source_copy + "\n")
     
     with open("creat_sql.sql","r") as fin:
