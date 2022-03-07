@@ -1,1 +1,1 @@
-https://leetcode-cn.com/problems/sales-person/
+https://leetcode-cn.com/problems/sales-person
