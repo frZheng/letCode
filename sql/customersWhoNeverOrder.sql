@@ -1,4 +1,7 @@
 -- web: https://leetcode-cn.com/problems/customers-who-never-order
+
+drop table if EXISTS Customers;
+drop table if EXISTS Orders;
 Create table If Not Exists Customers (id int, name varchar(255));
 Create table If Not Exists Orders (id int, customerId int);
 Truncate table Customers;

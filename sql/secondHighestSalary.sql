@@ -1,4 +1,5 @@
 -- web https://leetcode-cn.com/problems/second-highest-salary
+drop table if EXISTS Employee;
 Create table If Not Exists Employee (id int, salary int);
 Truncate table Employee;
 insert into Employee (id, salary) values ('1', '100');

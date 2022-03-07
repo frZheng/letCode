@@ -1,4 +1,5 @@
 -- web: https://leetcode-cn.com/problems/rising-temperature
+drop table if EXISTS Weather;
 Create table If Not Exists Weather (id int, recordDate date, temperature int);
 Truncate table Weather;
 insert into Weather (id, recordDate, temperature) values ('1', '2015-01-01', '10');

@@ -1,4 +1,5 @@
 -- web: https://leetcode-cn.com/problems/game-play-analysis-ii
+drop table if EXISTS activity;
 CREATE TABLE If Not Exists activity (player_id INT, device_id INT, event_date DATE, games_played INT, PRIMARY KEY (player_id, event_date));
 Truncate table  activity;
 INSERT INTO Activity VALUES(1,2,'2016-03-01',5);
