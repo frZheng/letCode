@@ -27,7 +27,7 @@ with open("fin.txt","r") as fin:
 
 if source[-1] == "/":
     source=source[:-1]
-source_copy = source.copy    
+source_copy = source
 print("\n", " "*10, "//web", source, "\n")
 source = source.split("/")[-1]
 
@@ -58,3 +58,11 @@ with open("fileName.txt","w") as fout:
 with open("sql/{}.sql".format(des),"w") as fout:
     fout.write("#web: ")    
     fout.write(source_copy + "\n")
+    
+    with open("creat_sql.sql","r") as fin:
+        lines = fin.readlines()
+        for line in lines:
+            if line[-1] == "\n":
+                line = line[:-1]
+            fout.write(line + ";\n")
+    
