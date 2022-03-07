@@ -1,7 +1,7 @@
-CREATE TABLE If Not Exists activity (player_id INT, device_id INT, event_date DATE, games_played INT, PRIMARY KEY (player_id, event_date))
-Truncate table  activity
-INSERT INTO Activity VALUES(1,2,'2016-03-01',5)
-INSERT INTO Activity VALUES(1,2,'2016-05-02',6)
-INSERT INTO Activity VALUES(2,3,'2017-06-25',1)
-INSERT INTO Activity VALUES(3,1,'2016-03-02',0)
-INSERT INTO Activity VALUES(3,4,'2018-07-03',5)
+Create table If Not Exists World (name varchar(255), continent varchar(255), area int, population int, gdp int)
+Truncate table World
+insert into World (name, continent, area, population, gdp) values ('Afghanistan', 'Asia', '652230', '25500100', '20343000000')
+insert into World (name, continent, area, population, gdp) values ('Albania', 'Europe', '28748', '2831741', '12960000000')
+insert into World (name, continent, area, population, gdp) values ('Algeria', 'Africa', '2381741', '37100000', '188681000000')
+insert into World (name, continent, area, population, gdp) values ('Andorra', 'Europe', '468', '78115', '3712000000')
+insert into World (name, continent, area, population, gdp) values ('Angola', 'Africa', '1246700', '20609294', '100990000000')
