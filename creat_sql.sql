@@ -1,7 +1,11 @@
-Create table If Not Exists World (name varchar(255), continent varchar(255), area int, population int, gdp int)
-Truncate table World
-insert into World (name, continent, area, population, gdp) values ('Afghanistan', 'Asia', '652230', '25500100', '20343000000')
-insert into World (name, continent, area, population, gdp) values ('Albania', 'Europe', '28748', '2831741', '12960000000')
-insert into World (name, continent, area, population, gdp) values ('Algeria', 'Africa', '2381741', '37100000', '188681000000')
-insert into World (name, continent, area, population, gdp) values ('Andorra', 'Europe', '468', '78115', '3712000000')
-insert into World (name, continent, area, population, gdp) values ('Angola', 'Africa', '1246700', '20609294', '100990000000')
+Create table If Not Exists Courses (student varchar(255), class varchar(255))
+Truncate table Courses
+insert into Courses (student, class) values ('A', 'Math')
+insert into Courses (student, class) values ('B', 'English')
+insert into Courses (student, class) values ('C', 'Math')
+insert into Courses (student, class) values ('D', 'Biology')
+insert into Courses (student, class) values ('E', 'Math')
+insert into Courses (student, class) values ('F', 'Computer')
+insert into Courses (student, class) values ('G', 'Math')
+insert into Courses (student, class) values ('H', 'Math')
+insert into Courses (student, class) values ('I', 'Math')
