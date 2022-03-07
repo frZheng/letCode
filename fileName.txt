@@ -1,1 +1,1 @@
-classesMoreThan5Students
+friendRequestsIOverallAcceptanceRate

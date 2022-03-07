@@ -1,1 +1,1 @@
-https://leetcode-cn.com/problems/friend-requests-i-overall-acceptance-rate/
+https://leetcode-cn.com/problems/consecutive-available-seats/
