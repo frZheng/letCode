@@ -1,1 +1,1 @@
-https://leetcode-cn.com/problems/consecutive-available-seats/
+https://leetcode-cn.com/problems/sales-person/
