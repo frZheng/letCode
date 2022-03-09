@@ -9,24 +9,22 @@ public class  reverseLinkedList {
 
         public Solution() {
         }
-//        public ListNode reverseList(ListNode head) {
-//            ListNode prev = null;
-//            ListNode cur = head;
-//            ListNode temp = null;
-//            while (cur != null) {
-//                temp = cur.next;// 保存下一个节点
-//
-//                // 头插法
-//                cur.next = prev;// 将一个节点从头部插入到节点
-//                prev = cur;
-//
-//                cur = temp;// 第一句和这句就是遍历列表的
-//            }
-//            return prev;
-//        }
         public ListNode reverseList(ListNode head) {
+            ListNode prev = null;
+            ListNode cur = head;
+            ListNode temp = null;
+            while (cur != null) {
+                temp = cur.next;// 保存下一个节点
 
+                // 头插法
+                cur.next = prev;// 将一个节点从头部插入到节点
+                prev = cur;
+
+                cur = temp;// 第一句和这句就是遍历列表的
+            }
+            return prev;
         }
+
 	}
 	public static void main(String Args[]) {
         Solution solution = new Solution();
