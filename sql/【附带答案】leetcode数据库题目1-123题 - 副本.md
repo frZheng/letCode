@@ -10,6 +10,97 @@
 >
 > 祝大家面试取得好的成绩
 
+#### group by和partition by区别小结
+
+group by是分组函数，partition by是分析函数（然后像sum()等是聚合函数）；
+在执行顺序上，对于group by而言
+from > where > group by > having > order by
+对于partition by而言，在执行完select之后，在所得结果集之上进行partition。
+在group by后的结果集上使用聚合函数，会作用在分组下的所有记录上。而如果在partition结果上聚合，千万注意聚合函数是逐条累计运行结果的！
+group by将分组记录汇总成一条记录，具有去重效果
+partition by显示所有数据，不会去重
+
+```sql
+drop table if EXISTS diff;
+Create table If Not Exists diff (name varchar(255), orderdate varchar(255), cost int);
+Truncate table diff;
+insert into diff (name,orderdate,cost) values ('jack','2015-01-01',10);
+insert into diff (name,orderdate,cost) values ('tony','2015-01-02',15);
+insert into diff (name,orderdate,cost) values ('jack','2015-02-03',23);
+insert into diff (name,orderdate,cost) values ('tony','2015-01-04',29);
+insert into diff (name,orderdate,cost) values ('jack','2015-01-05',46);
+insert into diff (name,orderdate,cost) values ('jack','2015-04-06',42);
+insert into diff (name,orderdate,cost) values ('tony','2015-01-07',50);
+insert into diff (name,orderdate,cost) values ('jack','2015-01-08',55);
+insert into diff (name,orderdate,cost) values ('mart','2015-04-08',62);
+insert into diff (name,orderdate,cost) values ('mart','2015-04-09',68);
+insert into diff (name,orderdate,cost) values ('neil','2015-05-10',12);
+insert into diff (name,orderdate,cost) values ('mart','2015-04-11',75);
+insert into diff (name,orderdate,cost) values ('neil','2015-06-12',80);
+insert into diff (name,orderdate,cost) values ('mart','2015-04-13',94);
+select * from diff;
+```
+
+**对于group by**
+
+```mysql
+select name,sum(cost) from diff group by name;
+```
+
+```
++------+-----------+
+| name | sum(cost) |
++------+-----------+
+| jack |       176 |
+| mart |       299 |
+| neil |        92 |
+| tony |        94 |
++------+-----------+
+```
+
+**对于partition by**
+
+```mysql
+select name,orderdate,cost,sum(cost) over(partition by name) from diff;
+```
+
+```
+
+```
+
+![001](D:\ZGZ\labuladong\java-letcode\src\main\java\sql\img\001.png)
+
+如果partition 加上order by
+
+```mysql
+select name,orderdate,cost,sum(cost) over(partition by name order by orderdate) from diff;
+```
+
+![20200929151023619](D:\ZGZ\labuladong\java-letcode\src\main\java\sql\img\20200929151023619.png)
+
+
+
+### [SQL中where与having的区别](https://www.cnblogs.com/muhy/p/10558849.html)
+
+where和having的区别
+where:
+where是一个**约束声明**,使用where来约束来自数据库的数据;
+where是在**结果返回之前**起作用的;
+where中**不能使用聚合函数**。
+
+having:
+having是一个**过滤声明**;
+在查询**返回结果集以后**，对查询结果进行的过滤操作;
+在having中可以使用聚合函数。
+
+ 
+
+where和having的执行顺序:
+where 早于 group by 早于 having
+where子句在聚合前先筛选记录，也就是说作用在group by 子句和having子句前，而 having子句在聚合后对组记录进行筛选
+
+
+
 #### 【简单】[175. 组合两个表](https://leetcode-cn.com/problems/combine-two-tables/)
 
 难度简单
@@ -199,6 +290,22 @@ from Scores
 难度中等
 
 SQL架构
+
+```sql
+drop table if exist Logs;
+Create table If Not Exists Logs (id int, num int);
+Truncate table Logs;
+insert into Logs (id, num) values ('1', '1');
+insert into Logs (id, num) values ('2', '1');
+insert into Logs (id, num) values ('3', '1');
+insert into Logs (id, num) values ('4', '2');
+insert into Logs (id, num) values ('5', '1');
+insert into Logs (id, num) values ('6', '2');
+insert into Logs (id, num) values ('7', '2');
+select * from logs;
+```
+
+
 
 编写一个 SQL 查询，查找所有至少连续出现三次的数字。
 
