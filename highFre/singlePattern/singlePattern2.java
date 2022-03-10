@@ -1,4 +1,4 @@
-package highFre;
+package highFre.singlePattern;
 
 public class singlePattern2 {
     public singlePattern2() {

@@ -1,4 +1,4 @@
-package highFre;
+package highFre.singlePattern;
 
 public class singlePatternTest {
     public static void main(String[] args) {

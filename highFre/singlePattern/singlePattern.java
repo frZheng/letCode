@@ -1,4 +1,4 @@
-package highFre;
+package highFre.singlePattern;
 
 // 饿汉模式
 public class singlePattern {
