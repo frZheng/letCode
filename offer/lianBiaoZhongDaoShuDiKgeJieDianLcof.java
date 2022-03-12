@@ -16,7 +16,22 @@ public class lianBiaoZhongDaoShuDiKgeJieDianLcof {
         }
         public ListNode getKthFromEnd(ListNode head, int k) {
 
-            return head;
+            // 快慢指针，先让快指针走k步，然后两个指针同步走，
+            // 当快指针走到头时，慢指针就是链表倒数第k个节点。
+            ListNode fastNode = head, slowNode = head;
+            while (fastNode != null && k > 0) {
+
+                fastNode = fastNode.next;
+                k--;
+            }
+
+            while (fastNode != null) {
+
+                fastNode = fastNode.next;
+                slowNode = slowNode.next;
+            }
+
+            return slowNode;
         }
     }
     public static ListNode array2ListNode(int[] arr) {
@@ -36,7 +51,7 @@ public class lianBiaoZhongDaoShuDiKgeJieDianLcof {
         int[] str = {1,2,3,4,5};
         root = array2ListNode(str);
 
-        ListNode lists = solution.getKthFromEnd(root, 5);
+        ListNode lists = solution.getKthFromEnd(root, 1);
 //        ListNode lists = root;
         while (lists != null){
             System.out.println(lists.val);
