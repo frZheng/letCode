@@ -2,6 +2,9 @@ package offer;
 
 //web https://leetcode-cn.com/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class baShuZuPaiChengZuiXiaoDeShuLcof {
     private static class Solution {
 
@@ -9,7 +12,12 @@ public class baShuZuPaiChengZuiXiaoDeShuLcof {
         }
 
         public String minNumber(int[] nums) {
-            return "";
+            List<String> list = new ArrayList<>();
+            for (int num : nums) {
+                list.add(String.valueOf(num));
+            }
+            list.sort((o1, o2) -> (o1 + o2).compareTo(o2 + o1));
+            return String.join("", list);
         }
     }
     public static void main(String Args[]) {
