@@ -1,6 +1,6 @@
 package offer;
 
-//web https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-zui-jin-gong-gong-zu-xian-lcof
+ //web https://leetcode-cn.com/problems/er-cha-shu-de-zui-jin-gong-gong-zu-xian-lcof
 
 
 import Trees.Tree.TreeNode;
@@ -8,37 +8,23 @@ import Trees.Tree.TreeNode;
 import java.util.*;
 
 
-public class erChaSouSuoShuDeZuiJinGongGongZuXianLcof {
+public class  erChaShuDeZuiJinGongGongZuXianLcof {
     private static class Solution {
 
         public Solution() {
         }
-
         public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-            if (root == null) {
+            if (root == null)
                 return null;
-            }
-            if (root == p || root == q) {
-                return root;
-            }
-            TreeNode left = lowestCommonAncestor(root.left, p, q);
-            TreeNode right = lowestCommonAncestor(root.right, p, q);
-            if (left != null && right != null) {
-                // p q 一个在左，一个在右
-                return root;
-            }
-            if (left != null) {
-                // p q 都在左子树
-                return left;
-            }
-            if (right != null) {
-                // p q 都在右子树
-                return right;
-            }
-            return null;
+
+            if (root.val > p.val && root.val > q.val)
+                return lowestCommonAncestor(root.left, p, q);
+            if (root.val < p.val && root.val < q.val)
+                return lowestCommonAncestor(root.right, p, q);
+
+            return root;
         }
     }
-
     public static TreeNode[] array2Tree(String str,int p, int q) {
         String[] split = str.split(",");
         TreeNode[] returns = new TreeNode[3];
@@ -72,8 +58,8 @@ public class erChaSouSuoShuDeZuiJinGongGongZuXianLcof {
 
 //        String str = "3,4,5,1,2,null,null";
 
-        String str = "3,5,1,6,2,0,8,null,null,7,4";
-        TreeNode[] roots = array2Tree(str, 5, 1);
+        String str = "6,2,8,0,4,7,9,null,null,3,5";
+        TreeNode[] roots = array2Tree(str, 2, 4);
         root = roots[0];
         TreeNode p = roots[1];
         TreeNode q = roots[2];
@@ -86,5 +72,7 @@ public class erChaSouSuoShuDeZuiJinGongGongZuXianLcof {
 //        for (int i : ints)
 //            System.out.println(i);
     }
+
+
 
 }
