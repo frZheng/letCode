@@ -26,7 +26,7 @@ public class erJinZhiZhong1deGeShuLcof {
 //        String str = "3,4,5,1,2,null,null";
 
 
-        int b = solution.hammingWeight(4294967293);
+        int b = solution.hammingWeight(123);
         System.out.println(b);
 
     }
