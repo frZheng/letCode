@@ -10,13 +10,13 @@ public class gouJianChengJiShuZuLcof {
         public Solution() {
         }
         public int[] constructArr(int[] a) {
-            int sum = 1;
-            for (int i = 0; i < a.length; ++i)
-                sum *= a[i];
-            int[] result = new int[a.length];
-//            for (int i = 0; i < a.length; ++i)
-//                result[i] = sum/(i+1);
-            return result;
+            int n = a.length;
+            int[] B = new int[n];
+            for (int i = 0, product = 1; i < n; product *= a[i], i++)       /* 从左往右累乘 */
+                B[i] = product;
+            for (int i = n - 1, product = 1; i >= 0; product *= a[i], i--)  /* 从右往左累乘 */
+                B[i] *= product;
+            return B;
         }
     }
 
