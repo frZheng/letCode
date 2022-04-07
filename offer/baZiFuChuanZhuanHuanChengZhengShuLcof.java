@@ -14,7 +14,7 @@ public class baZiFuChuanZhuanHuanChengZhengShuLcof {
 
 
         public int strToInt(String str) {
-            
+
         }
 
     }
