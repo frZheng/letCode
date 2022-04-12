@@ -14,7 +14,7 @@ public class ziFuChuanDePaiLieLcof {
         public String[] permutation(String s) {
             Set<String> list = new HashSet<>();
             char[] arr = s.toCharArray();
-            StringBuilder sb = new StringBuilder();
+//            StringBuilder sb = new StringBuilder();
             boolean[] visited = new boolean[arr.length];
             dfs(arr, "", visited, list);
             return list.toArray(new String[0]);
@@ -35,6 +35,7 @@ public class ziFuChuanDePaiLieLcof {
                 visited[i] = false;
             }
         }
+
     }
     public static void main(String Args[]) {
         Solution solution = new Solution();
