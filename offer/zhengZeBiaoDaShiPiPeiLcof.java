@@ -34,8 +34,15 @@ public class zhengZeBiaoDaShiPiPeiLcof {
             return f[m][n];
         }
 
-
-
+        public boolean matches(String s, String p, int i, int j) {
+            if (i == 0) {
+                return false;
+            }
+            if (p.charAt(j - 1) == '.') {
+                return true;
+            }
+            return s.charAt(i - 1) == p.charAt(j - 1);
+        }
     }
     public static void main(String Args[]) {
         Solution solution = new Solution();
