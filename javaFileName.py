@@ -44,13 +44,27 @@ res = new_res
 print(res)
 
 
-des = ""
+des1 = ""
 for i in range(len(source)):
     char = source[i]
     if i in res:
         char = char.upper()
+    des1 += char
+des1 = des1.replace("-", "")
+
+
+# 去掉字符串前面的数字
+des = ""
+is_start = True
+for i in range(len(des1)):
+    char = des1[i]
+    # print(char,char.isdecimal())
+    if is_start and char.isdecimal():
+        continue
+    else:
+        is_start = False
     des += char
-des = des.replace("-", "")
+    
 print(" "*10,des)
 with open("fileName.txt","w") as fout:
     fout.write(des)
