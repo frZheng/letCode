@@ -20,4 +20,14 @@ public class ListNode {
     public void setNext(ListNode next) {
         this.next = next;
     }
+
+    public static ListNode arr2list(int[] arr) {
+        ListNode head = new ListNode(arr[0]);
+        ListNode tail = head;
+        for (int i = 1; i < arr.length; ++i) {
+            tail.next = new ListNode(arr[i]);
+            tail = tail.next;
+        }
+        return head;
+    }
 }

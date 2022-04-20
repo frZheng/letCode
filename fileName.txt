@@ -1,1 +1,1 @@
-letterCombinationsOfAPhoneNumber
+removeNthNodeFromEndOfList
