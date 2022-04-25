@@ -64,7 +64,12 @@ public class    mergeTwoSortedLists {
             msg += lists.val + ",";
             lists = lists.next;
         }
-        System.out.println(msg);
+//        System.out.println(msg);
+//        long l = System.currentTimeMillis(); // 毫秒
+//        System.out.println(String.valueOf(l));
+
+//        String s = "?";
+
     }
 
 }
