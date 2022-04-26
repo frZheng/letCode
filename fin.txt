@@ -1,1 +1,1 @@
-https://leetcode-cn.com/problems/merge-k-sorted-lists/
+https://leetcode-cn.com/problems/next-permutation/
