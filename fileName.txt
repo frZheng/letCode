@@ -1,1 +1,1 @@
-longestCommonPrefix
+searchInRotatedSortedArray
