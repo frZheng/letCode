@@ -22,7 +22,6 @@ public class   stringToIntegerAtoi {
             for (int i = 0; i < s.length(); ++i){
                 char ch = s.charAt(i);
 
-
                 if (!startFlage && ch == ' ')
                     continue;
                 if (startFlage && (ch < '0' || ch >'9'))
