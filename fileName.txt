@@ -1,1 +1,1 @@
-nextPermutation
+findFirstAndLastPositionOfElementInSortedArray
