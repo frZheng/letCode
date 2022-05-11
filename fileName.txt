@@ -1,1 +1,1 @@
-longestConsecutiveSequence
+singleNumber
