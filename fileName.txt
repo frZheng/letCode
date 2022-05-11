@@ -1,1 +1,1 @@
-singleNumber
+linkedListCycle
