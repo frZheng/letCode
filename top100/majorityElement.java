@@ -20,9 +20,13 @@ public class   majorityElement {
             HashMap<Integer, Integer> map = new HashMap<>();
             int res = 0;
             int maxLen = 0;
+
+//            int halfSize = (nums.length+1)/2;
             for (int i= 0; i < nums.length; ++i) {
                 Integer num = map.getOrDefault(nums[i], 0);
                 num = num + 1;
+//                if (num >= halfSize)
+//                    return nums[i];
                 if (maxLen < num){
                     maxLen = num;
                     res = nums[i];
