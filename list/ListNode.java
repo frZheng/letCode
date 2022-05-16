@@ -23,6 +23,7 @@ public class ListNode {
     }
 
     public static ListNode arr2list(int[] arr) {
+        if (arr.length == 0) return null;
         ListNode head = new ListNode(arr[0]);
         ListNode tail = head;
         for (int i = 1; i < arr.length; ++i) {

@@ -1,1 +1,1 @@
-https://leetcode.cn/problems/majority-element/
+https://leetcode.cn/problems/number-of-islands/

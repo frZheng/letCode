@@ -30,10 +30,11 @@ public class intersectionOfTwoLinkedLists {
             int BLen = BArray.size();
             if (!(AArray.get(ALen-1) == BArray.get(BLen-1)))
                 return null;
-            int Ai = ALen - 2;
-            int Bi = BLen - 2;
+            int Ai = ALen - 1;
+            int Bi = BLen - 1;
 
             while (Ai >= 0 && Bi>=0) {
+//                System.out.println(Ai + "," + Bi);
                 if (AArray.get(Ai) == BArray.get(Bi)){
                     Bi--;
                     Ai--;
@@ -41,7 +42,10 @@ public class intersectionOfTwoLinkedLists {
                 else
                     return AArray.get(Ai+1);
             }
-            return null;
+            if (AArray.get(Ai+1) == BArray.get(Bi+1)){
+                return AArray.get(Ai+1);
+            }else
+                return null;
         }
 
     }
@@ -53,6 +57,12 @@ public class intersectionOfTwoLinkedLists {
         ListNode headA = ListNode.arr2list(new int[] {4,1});
         ListNode headB = ListNode.arr2list(new int[] {5,6,1});
         ListNode headC = ListNode.arr2list(new int[] {8,4,5});
+
+//        ListNode headA = ListNode.arr2list(new int[] {});
+//        ListNode headB = ListNode.arr2list(new int[] {});
+//        ListNode headC = ListNode.arr2list(new int[] {1});
+//        ListNode intersectionNode = solution.getIntersectionNode(headC, headC);
+
         ListNode tail = headA;
         while (tail.next != null) {
             tail = tail.next;
@@ -63,7 +73,9 @@ public class intersectionOfTwoLinkedLists {
             tail = tail.next;
         }
         tail.next = headC;
+
         ListNode intersectionNode = solution.getIntersectionNode(headA, headB);
+
         while (intersectionNode != null) {
             System.out.println(intersectionNode.val);
             intersectionNode = intersectionNode.next;
