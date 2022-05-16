@@ -19,7 +19,7 @@ public class   numberOfIslands {
         public int numIslands(char[][] grid) {
             int row = grid.length;
             int col = grid[0].length;
-            boolean vistied[][] = new boolean[row][col];
+            boolean[][] vistied = new boolean[row][col];
             int [] rowStep = {1, 0, -1, 0};
             int [] colStep = {0, 1, 0, -1};
             int res = 0;
@@ -58,8 +58,6 @@ public class   numberOfIslands {
                 for (int i = 0; i < rowStep.length; ++i) {
                     dfs(row + rowStep[i], col + colStep[i], grid, vistied, rowStep, colStep);
                 }
-
-
             }
             return 1;
         }
