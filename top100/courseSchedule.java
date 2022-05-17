@@ -12,10 +12,11 @@ public class   courseSchedule {
         }
 
 
-        List<List<Integer>> edges;
-        int[] indeg;
+
 
         public boolean canFinish(int numCourses, int[][] prerequisites) {
+            List<List<Integer>> edges;
+            int[] indeg;
             edges = new ArrayList<>();
             for (int i = 0; i < numCourses; ++i) {
                 edges.add(new ArrayList<>());
