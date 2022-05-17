@@ -8,7 +8,7 @@ import java.util.*;
 public class   implementTriePrefixTree {
     private static class Trie {
         private Trie[] children;
-        private boolean isEnd;
+        private boolean isEnd; //标识此字符是否为最后一个字符
 
         public Trie() {
             children = new Trie[26];
