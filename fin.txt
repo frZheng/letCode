@@ -1,1 +1,1 @@
-https://leetcode.cn/problems/kth-largest-element-in-an-array/
+https://leetcode.cn/problems/maximal-square/

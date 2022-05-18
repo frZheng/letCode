@@ -20,7 +20,7 @@ public class test {
                     }
                 }
             }
-
+            return nums;
         }
 
 
