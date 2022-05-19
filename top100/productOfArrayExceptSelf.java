@@ -21,9 +21,9 @@ public class   productOfArrayExceptSelf {
             int[] left = new int[size];
             int[] right = new int[size];
             int[] result = new int[size];
-            for (int i = 0; i < size; ++i) {
-                left
-            }
+//            for (int i = 0; i < size; ++i) {
+//                left
+//            }
             return result;
         }
 
