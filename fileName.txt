@@ -1,1 +1,1 @@
-productOfArrayExceptSelf
+slidingWindowMaximum
