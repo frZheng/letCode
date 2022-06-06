@@ -11,10 +11,15 @@ public class  perfectSquares {
         public Solution() {
         }
         public int numSquares(int n) {
-            ArrayList<Integer> squrares = new ArrayList<>();
-            for (int i = 2; i <= 100; ++i){
-                squrares.add(i*i);
+            int[] f = new int[n + 1];
+            for (int i = 1; i <= n; i++) {
+                int minn = Integer.MAX_VALUE;
+                for (int j = 1; j * j <= i; j++) {
+                    minn = Math.min(minn, f[i - j * j]);
+                }
+                f[i] = minn + 1;
             }
+            return f[n];
         }
 
 
@@ -23,8 +28,6 @@ public class  perfectSquares {
 
     public static void main(String[] Args) {
         Solution solution = new Solution();
-
-//        int[] lists = solution.maxSlidingWindow(new int[]{1,3,-1,-3,5,3,6,7},3);
 
         int res = solution.numSquares(12);
 
