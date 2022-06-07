@@ -4,6 +4,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
+// https://blog.csdn.net/u014421970/article/details/99881578
 public class SpatialRelationUtil {
 //    private static class Solution {
 //
@@ -17,9 +18,9 @@ public class SpatialRelationUtil {
         public double x;
         public double y;
 
-        public Point(int a, int b) {
-            x = a;
-            y = b;
+        public Point(double x, double y) {
+            this.x = x;
+            this.y = y;
         }
     }
 
@@ -91,16 +92,40 @@ public class SpatialRelationUtil {
     public static void main(String[] Args) {
         SpatialRelationUtil solution = new SpatialRelationUtil();
         List<Point> mPoints = new ArrayList<>();
-        mPoints.add(new Point(0,0));
-        mPoints.add(new Point(2,0));
-        mPoints.add(new Point(0,3));
-        mPoints.add(new Point(3,3));
-        boolean polygonContainsPoint = solution.isPolygonContainsPoint(mPoints, new Point(0, 1));
-        System.out.println(polygonContainsPoint);
-        polygonContainsPoint = solution.isPolygonContainsPoint(mPoints, new Point(0, 0));
-        System.out.println(polygonContainsPoint);
-        polygonContainsPoint = solution.isPolygonContainsPoint(mPoints, new Point(2, 1));
-        System.out.println(polygonContainsPoint);
+        double[][] edgePoints = {
+                {0,0},
+                {2,0},
+                {0,3},
+                {3,3},
+        };
+        for (double[] edgePoint : edgePoints) {
+            mPoints.add(new Point(edgePoint[0], edgePoint[1]));
+        }
+        // 最后一个维度,0区域外,1区域内,2边界
+        double[][] testPoints = {
+                {0, 1, 2},
+                {0, 0, 2},
+                {1, 1, 1},
+                {4, 5, 0},
+        };
+
+        boolean polygonContainsPoint;
+        for (double[] testPoint : testPoints) {
+            polygonContainsPoint = solution.isPolygonContainsPoint(mPoints, new Point(testPoint[0], testPoint[1]));
+            if (polygonContainsPoint)
+                System.out.println("in  " + testPoint[2]);
+            else
+                System.out.println("out " + testPoint[2]);
+        }
+//        boolean polygonContainsPoint = solution.isPolygonContainsPoint(mPoints, new Point(0, 1));
+//        System.out.println(polygonContainsPoint);
+//        polygonContainsPoint = solution.isPolygonContainsPoint(mPoints, new Point(0, 0));
+//        System.out.println(polygonContainsPoint);
+//        polygonContainsPoint = solution.isPolygonContainsPoint(mPoints, new Point(1, 1));
+//        System.out.println(polygonContainsPoint);
+//
+//        polygonContainsPoint = solution.isPolygonContainsPoint(mPoints, new Point(2, 1));
+//        System.out.println(polygonContainsPoint);
 
 
     }
