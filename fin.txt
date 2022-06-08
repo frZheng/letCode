@@ -1,1 +1,1 @@
-https://leetcode.cn/problems/move-zeroes/
+https://leetcode.cn/problems/find-the-duplicate-number/
