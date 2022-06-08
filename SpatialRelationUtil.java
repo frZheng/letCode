@@ -54,6 +54,40 @@ public class SpatialRelationUtil {
     }
 
     /**
+     * 返回一个点是否在一个多边形区域内
+     *
+     * @param mPoints 多边形坐标点列表,要求这些点按照顺序能绘制成一个区域
+     * @param point 待判断点
+     * @return true 多边形包含这个点,false 多边形未包含这个点。
+     */
+    public static boolean isPolygonContainsPointArr(int[][] mPoints, int[] point) {
+        int nCross = 0;
+        int arrSize = mPoints.length;
+        int yIndex = 0;
+        int xIndex = 1;
+        for (int i = 0; i < arrSize; i++) {
+            int[] p1 = mPoints[i];
+            int[] p2 = mPoints[(i + 1) % arrSize];
+
+            // 取多边形任意一个边,做点point的水平延长线,求解与当前边的交点个数
+            // p1p2是水平线段,要么没有交点,要么有无限个交点
+            if (p1[yIndex] == p2[yIndex]) continue;
+            // point 在p1p2 底部 --> 无交点
+            if (point[yIndex] < Math.min(p1[yIndex], p2[yIndex])) continue;
+            // point 在p1p2 顶部 --> 无交点
+            if (point[yIndex] >= Math.max(p1[yIndex], p2[yIndex])) continue;
+            // 求解 point点水平线与当前p1p2边的交点的 X 坐标 通过前面几个if条件筛选,这里的如果求出来有交点一定在p1p2连接线上,而不是延长线上.
+            double x = (point[yIndex] - p1[yIndex]) *
+                    (p2[xIndex] - p1[xIndex]) /
+                    (p2[yIndex] - p1[yIndex]) + p1[xIndex];
+            if (x > point[xIndex]) // 当x=point.x时,说明point在p1p2线段上
+                nCross++; // 只统计单边交点
+        }
+        // 单边交点为偶数，点在多边形之外 ---
+        return (nCross % 2 == 1);
+    }
+
+    /**
      * 返回一个点是否在一个多边形边界上
      *
      * @param mPoints 多边形坐标点列表
