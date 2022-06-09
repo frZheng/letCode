@@ -17,7 +17,7 @@ public class  burstBalloons {
         }
 
         public int maxCoins(int[] nums) {
-            
+
         }
 
     }
