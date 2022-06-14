@@ -1,1 +1,1 @@
-countingBits
+decodeString
