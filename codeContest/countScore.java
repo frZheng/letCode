@@ -3,7 +3,7 @@ package codeContest;
 import cn.hutool.core.io.FileUtil;
 
 // https://leetcode.cn/problems/climbing-stairs/
-// 题目描述: 现在进行选择题考试,单选题1分,双选题4分,你有多少种不同的方法可以爬到取到指定分数呢？
+// 题目描述: 现在进行选择题考试,单选题1分,双选题4分,你有多少种不同的方法可以获取到指定分数呢？
 // 示例 1：
 //输入：n = 2
 //输出：1

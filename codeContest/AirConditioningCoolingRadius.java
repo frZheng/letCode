@@ -11,17 +11,17 @@ import java.util.Arrays;
 //说明：所有空调都遵循你的半径标准，制冷的半径也一样。
 
 // 示例 1：
-//输入： houses = [1,2,3], heaters = [2]
+//输入： stations = [1,2,3], conditioners = [2]
 //输出： 输出: 1
 //解释: 仅在位置2上有一个供暖器。如果我们将加热半径设为1，那么所有房屋就都能得到供暖。
-
+//
 //示例 2：
-//输入：houses = [1,2,3,4], heaters = [1,4]
+//输入：stations = [1,2,3,4], conditioners = [1,4]
 //输出：1
 //解释: 在位置1, 4上有两个供暖器。我们需要将加热半径设为1，这样所有房屋就都能得到供暖。
-
+//
 //示例 3：
-//输入：houses = [1,5], heaters = [2]
+//输入：stations = [1,5], conditioners = [2]
 //输出：3
 
 
@@ -48,12 +48,14 @@ public class AirConditioningCoolingRadius {
 
     public static void main(String[] args) {
 
-//        int[] houses = {1,2,3};
-//        int[] heaters = {2};
-//        int caseNum = 1;
+        int[] houses = {1,2,3};
+        int[] heaters = {2};
+        int caseNum = 1;
+
 //        int[] houses = {1,2,3,4};
 //        int[] heaters = {1,4};
 //        int caseNum = 2;
+
 //        int[] houses = {1,5};
 //        int[] heaters = {2};
 //        int caseNum = 3;
@@ -82,9 +84,9 @@ public class AirConditioningCoolingRadius {
 //        int[] heaters = {4,9,50,5,60,110};
 //        int caseNum = 9;
 
-        int[] houses = {1,50,5,846};
-        int[] heaters = {4,786,467,786,45,110};
-        int caseNum = 10;
+//        int[] houses = {1,50,5,846};
+//        int[] heaters = {4,786,467,786,45,110};
+//        int caseNum = 10;
 
 
         int res = findRadius(houses,heaters);
@@ -116,7 +118,8 @@ public class AirConditioningCoolingRadius {
             }
         }
         FileUtil.appendUtf8String(msg1.toString(), inPath);
-
+        String outPath = path + String.valueOf(caseNum) + ".out";
+        FileUtil.writeUtf8String(String.valueOf(res), outPath);
 //        Scanner sc = new Scanner(System.in);
 //        String next = sc.nextLine();
 //        String[] s = next.split(",");

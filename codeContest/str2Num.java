@@ -86,9 +86,9 @@ public class str2Num {
     public static void main(String[] args) {
 
 //        System.out.println(getRandomString(3));
-        for (int i = 0; i < 100; ++i) {
+        for (int i = 0; i < 50; ++i) {
             Random random=new Random();
-            int number=random.nextInt(10);
+            int number=random.nextInt(10) + 1;
             String arr = getRandomString(number);
             System.out.println(arr);
             int res = romanToInt(arr);
@@ -96,7 +96,16 @@ public class str2Num {
 
             String path = "D:\\ZGZ\\labuladong\\java-letcode\\src\\main\\java\\codeContest\\str2NumTestCase\\";
             int caseNum = i;
-            FileUtil.writeUtf8String(arr, path + String.valueOf(caseNum) + ".in");
+            StringBuilder inMsg = new StringBuilder();
+            inMsg.append(arr.length());
+            inMsg.append("\n");
+            for (int j = 0; j <arr.length();++j){
+                inMsg.append(arr.charAt(j));
+                if (j < arr.length() - 1) {
+                    inMsg.append(" ");
+                }
+            }
+            FileUtil.writeUtf8String(inMsg.toString(), path + String.valueOf(caseNum) + ".in");
             FileUtil.writeUtf8String(String.valueOf(res), path + String.valueOf(caseNum) + ".out");
         }
 

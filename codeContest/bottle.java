@@ -30,14 +30,17 @@ public class bottle {
     public static void main(String[] args) {
 
 //        System.out.println(numWaterBottles(9, 3));
+        int caseNum = 0;
         for (int n = 5; n <= 20; ++n) {
             for (int m = 2; m < n; ++m) {
+
                 int res = numWaterBottles(n, m);
                 System.out.println(n + "," + res);
                 String path = "D:\\ZGZ\\labuladong\\java-letcode\\src\\main\\java\\codeContest\\bottleTestCase\\";
-                int caseNum = n;
-                FileUtil.writeUtf8String(String.valueOf(n) + " " + String.valueOf(m), path + String.valueOf(caseNum) + "_" + String.valueOf(m) + ".in");
+
+                FileUtil.writeUtf8String(String.valueOf(n) + " " + String.valueOf(m), path + String.valueOf(caseNum) + ".in");
                 FileUtil.writeUtf8String(String.valueOf(res), path + String.valueOf(caseNum) + ".out");
+                caseNum += 1;
             }
         }
 
