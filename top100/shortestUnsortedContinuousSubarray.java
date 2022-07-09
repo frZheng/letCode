@@ -31,7 +31,6 @@ public class   shortestUnsortedContinuousSubarray {
             return right == -1 ? 0 : right - left + 1;
         }
 
-
     }
 
 
