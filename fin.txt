@@ -1,1 +1,1 @@
-https://leetcode.cn/problems/task-scheduler/
+https://leetcode.cn/problems/palindromic-substrings/
