@@ -1,1 +1,1 @@
-palindromicSubstrings
+dailyTemperatures
