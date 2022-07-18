@@ -613,7 +613,7 @@ IT 部门中，Max 获得了最高的工资，Randy 和 Joe 都拿到了第二�
 select Department,Employee,Salary
 from (
 select d.Name  Department,e.Name Employee, e.Salary,
-dense_rank() over(partition by d.id order by Salary desc) rk
+dense_rank() over(partition by d.id order by Salary desc) rk --dense_rank 排序相同则认为是一个
 from Employee e join Department d
 on e.DepartmentId=d.id
 )tmp
@@ -709,8 +709,8 @@ Id
 from 
 (
 select Id,RecordDate,Temperature,
-lag(RecordDate,1,9999-99-99) over (order by RecordDate) yd,
-lag(Temperature,1,999) over(order by RecordDate ) yt
+lag(RecordDate,1,9999-99-99) over (order by RecordDate) yd, --昨天的日期
+lag(Temperature,1,999) over(order by RecordDate ) yt --昨天的温度
 from Weather 
 )tmp
 where Temperature >yt
@@ -1175,7 +1175,7 @@ where rk between ceil(rk_count/2) and floor(rk_count/2)+1
 
 > 中位数：
 >
-> +1向下取整 +2 向下取整数
+> +1向上取整 +2 向下取整数
 
 
 
@@ -1716,7 +1716,10 @@ SELECT name FROM customer WHERE referee_id != 2 OR referee_id IS NULL;
 > MySQL 使用三值逻辑 —— TRUE, FALSE 和 UNKNOWN。任何与 NULL 值进行的比较都会与第三种值 UNKNOWN 做比较。这个“任何值”包括 NULL 本身！这就是为什么 MySQL 提供 IS NULL 和 IS NOT NULL 两种操作来对 NULL 特殊判断。
 >
 > 因此，在 WHERE 语句中我们需要做一个额外的条件判断 `referee_id IS NULL'。
->
+
+
+
+
 
 #### 【有意思】[585. 2016年的投资（重点）](https://leetcode-cn.com/problems/investments-in-2016/)
 
@@ -2114,6 +2117,100 @@ or (a.lg>=100 and a.lg2>=100 and a.people>=100)
 
 
 #### [601. 体育馆的人流量](https://leetcode.cn/problems/human-traffic-of-stadium/)（重点）
+
+难度困难267收藏分享切换为英文接收动态反馈
+
+SQL架构
+
+表：`Stadium`
+
+```
++---------------+---------+
+| Column Name   | Type    |
++---------------+---------+
+| id            | int     |
+| visit_date    | date    |
+| people        | int     |
++---------------+---------+
+visit_date 是表的主键
+每日人流量信息被记录在这三列信息中：序号 (id)、日期 (visit_date)、 人流量 (people)
+每天只有一行记录，日期随着 id 的增加而增加
+```
+
+ 
+
+编写一个 SQL 查询以找出每行的人数大于或等于 `100` 且 `id` 连续的三行或更多行记录。
+
+返回按 `visit_date` **升序排列** 的结果表。
+
+查询结果格式如下所示。
+
+ 
+
+**示例 1:**
+
+```
+输入：
+Stadium 表:
++------+------------+-----------+
+| id   | visit_date | people    |
++------+------------+-----------+
+| 1    | 2017-01-01 | 10        |
+| 2    | 2017-01-02 | 109       |
+| 3    | 2017-01-03 | 150       |
+| 4    | 2017-01-04 | 99        |
+| 5    | 2017-01-05 | 145       |
+| 6    | 2017-01-06 | 1455      |
+| 7    | 2017-01-07 | 199       |
+| 8    | 2017-01-09 | 188       |
++------+------------+-----------+
+输出：
++------+------------+-----------+
+| id   | visit_date | people    |
++------+------------+-----------+
+| 5    | 2017-01-05 | 145       |
+| 6    | 2017-01-06 | 1455      |
+| 7    | 2017-01-07 | 199       |
+| 8    | 2017-01-09 | 188       |
++------+------------+-----------+
+解释：
+id 为 5、6、7、8 的四行 id 连续，并且每行都有 >= 100 的人数记录。
+请注意，即使第 7 行和第 8 行的 visit_date 不是连续的，输出也应当包含第 8 行，因为我们只需要考虑 id 连续的记录。
+不输出 id 为 2 和 3 的行，因为至少需要三条 id 连续的记录。
+```
+
+```sql
+select distinct t1.*
+from stadium t1, stadium t2, stadium t3
+where t1.people >= 100 and t2.people >= 100 and t3.people >= 100
+and
+(
+	  (t1.id - t2.id = 1 and t1.id - t3.id = 2 and t2.id - t3.id =1)  -- t1, t2, t3
+    or
+    (t2.id - t1.id = 1 and t2.id - t3.id = 2 and t1.id - t3.id =1) -- t2, t1, t3
+    or
+    (t3.id - t2.id = 1 and t2.id - t1.id =1 and t3.id - t1.id = 2) -- t3, t2, t1
+)
+order by t1.id;
+
+```
+
+```sql
+with people as
+(
+    select id, visit_date, people,
+    Lag(people,2) over(order by id) as pprvPeople,
+    Lag(people,1) over(order by id) as prvPeople,
+    Lead(people,1) over(order by id) as nextPeople,
+    Lead(people,2) over(order by id) as nnextPeople
+    from stadium
+)
+select id, visit_date, people from people
+where 
+(people >= 100 and prvPeople>=100 and pprvPeople>=100) ||
+(people >= 100 and nextPeople>=100 and nnextPeople>=100) ||
+(people >= 100 and nextPeople>=100 and prvPeople>=100) 
+```
 
 
 
@@ -2981,6 +3078,87 @@ where b.id=1^(a.id-1)+1
 
 
 #### [626. 换座位（重点）](https://leetcode.cn/problems/exchange-seats/)
+
+难度中等319收藏分享切换为英文接收动态反馈
+
+SQL架构
+
+表: `Seat`
+
+```
++-------------+---------+
+| Column Name | Type    |
++-------------+---------+
+| id          | int     |
+| name        | varchar |
++-------------+---------+
+Id是该表的主键列。
+该表的每一行都表示学生的姓名和ID。
+Id是一个连续的增量。
+```
+
+ 
+
+编写SQL查询来交换每两个连续的学生的座位号。如果学生的数量是奇数，则最后一个学生的id不交换。
+
+按 `id` **升序** 返回结果表。
+
+查询结果格式如下所示。
+
+ 
+
+**示例 1:**
+
+```
+输入: 
+Seat 表:
++----+---------+
+| id | student |
++----+---------+
+| 1  | Abbot   |
+| 2  | Doris   |
+| 3  | Emerson |
+| 4  | Green   |
+| 5  | Jeames  |
++----+---------+
+输出: 
++----+---------+
+| id | student |
++----+---------+
+| 1  | Doris   |
+| 2  | Abbot   |
+| 3  | Green   |
+| 4  | Emerson |
+| 5  | Jeames  |
++----+---------+
+解释:
+请注意，如果学生人数为奇数，则不需要更换最后一名学生的座位。
+```
+
+```sql
+SELECT
+    (CASE
+        WHEN MOD(id, 2) != 0 AND counts != id THEN id + 1 --除了最后一个的奇数
+        WHEN MOD(id, 2) != 0 AND counts = id THEN id --最后一个
+        ELSE id - 1 --偶数
+    END) AS id,
+    student
+FROM
+    seat,
+    (SELECT COUNT(*) AS counts FROM seat) AS seat_counts
+ORDER BY id ASC;
+```
+
+```sql
+SELECT
+    s1.id, COALESCE(s2.student, s1.student) AS student
+FROM
+    seat s1
+        LEFT JOIN
+    seat s2 ON ((s1.id + 1) ^ 1) - 1 = s2.id
+ORDER BY s1.id;
+
+```
 
 
 

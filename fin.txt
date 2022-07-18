@@ -1,1 +1,1 @@
-https://leetcode.cn/problems/daily-temperatures/
+https://leetcode.cn/problems/department-top-three-salaries/
