@@ -18,6 +18,18 @@ https://blog.csdn.net/m0_46132995/article/details/109254356?spm=1001.2101.3001.6
 
 
 
+创建数据库：
+
+```mysql8
+-- 创建数据库stuInfo
+CREATE DATABASE letcode
+DEFAULT CHARACTER SET utf8mb4
+DEFAULT COLLATE utf8mb4_general_ci;
+USE letcode;
+```
+
+
+
 #### group by和partition by区别小结
 
 group by是分组函数，partition by是分析函数（然后像sum()等是聚合函数）；
@@ -1009,6 +1021,25 @@ Result table:
 请注意，对于每个玩家，我们只关心玩家的登录日期。
 ```
 
+```sql
+drop table if EXISTS Activity;
+Create table If Not Exists Activity
+(player_id int,
+ device_id int,
+ event_date date,
+ games_played int,
+ primary key (player_id, event_date));
+ 
+insert into Activity values (1, 2, '2016-03-01', 5);
+insert into Activity values (1, 2, '2016-05-02', 6);
+insert into Activity values (2, 3, '2017-06-25', 1);
+insert into Activity values (3, 1, '2016-03-02', 0);
+insert into Activity values (3, 4, '2018-07-03', 5);
+
+```
+
+
+
 开窗
 
 ```sql
@@ -1858,6 +1889,24 @@ customer_number 为 '3' 的顾客有两个订单，比顾客 '1' 或者 '2' 都�
 
 **进阶：** 如果有多位顾客订单数并列最多，你能找到他们所有的 customer_number 吗？
 
+```mysql
+create table Orders
+(order_number int,
+ customer_number int,
+ order_date date,
+ required_date date,
+ shipped_date date,
+ status char(15),
+ comment varchar(200),
+ primary key (order_number));
+ 
+insert into Orders values (1, 1, '2017-04-09', '2017-04-13', '2017-04-12', 'Closed', null);
+insert into Orders values (2, 2, '2017-04-15', '2017-04-20', '2017-04-18', 'Closed', null);
+insert into Orders values (3, 3, '2017-04-16', '2017-04-25', '2017-04-20', 'Closed', null);
+insert into Orders values (4, 3, '2017-04-18', '2017-04-28', '2017-04-25', 'Closed', null);
+
+```
+
 
 
 ```sql
@@ -2021,6 +2070,33 @@ SQL架构
 
 你能写一个查询语句得到每个月的通过率吗？
 你能求出每一天的累计通过率吗？
+
+```mysql
+create table friend_request
+(sender_id int,
+ send_to_id int,
+ request_date date);
+
+create table request_accepted
+(requester_id int,
+ accepter_id int,
+ accept_date date);
+
+insert into friend_request values (1, 2, '2016-06-01');
+insert into friend_request values (1, 3, '2016-06-01');
+insert into friend_request values (1, 4, '2016-06-01');
+insert into friend_request values (2, 3, '2016-06-02');
+insert into friend_request values (3, 4, '2016-06-09');
+
+insert into request_accepted values (1, 2, '2016-06-03'); 
+insert into request_accepted values (1, 3, '2016-06-08'); 
+insert into request_accepted values (2, 3, '2016-06-08'); 
+insert into request_accepted values (3, 4, '2016-06-09'); 
+insert into request_accepted values (3, 4, '2016-06-10'); 
+
+```
+
+
 
 ```sql
 select
@@ -2304,6 +2380,21 @@ SQL架构
 - seat_id 字段是一个自增的整数，free 字段是布尔类型（'1' 表示空余， '0' 表示已被占据）。
 - 连续空余座位的定义是大于等于 2 个连续空余的座位。
 
+```mysql
+drop table if EXISTS Cinema;
+Create table If Not Exists Cinema(seat_id int,free boolean);
+ 
+insert into Cinema values (1, 1);
+insert into Cinema values (2, 0);
+insert into Cinema values (3, 1);
+insert into Cinema values (4, 1);
+insert into Cinema values (5, 1);
+
+select * from Cinema;
+```
+
+
+
 ```sql
 select seat_id
 from (
@@ -2392,7 +2483,51 @@ SQL架构
 
 根据表 `orders` 中的订单 '3' 和 '4' ，容易看出只有 'John' 和 'Pam' 两个销售员曾经向公司 'RED' 销售过。
 
-所以我们需要输出表 `salesperson` 中所有其他人的名字。\
+所以我们需要输出表 `salesperson` 中所有其他人的名字。
+
+```mysql
+drop table if exits Salesperson;
+create table if not exits Salesperson
+(sales_id int,
+ name varchar(20),
+ salary int,
+ commission_rate int,
+ hire_date date);
+ 
+create table company
+(com_id int,
+ name varchar(10),
+ city varchar(10));
+
+drop table Orders;
+create table Orders
+(order_id int,
+ order_date date,
+ com_id int,
+ sales_id int,
+ amount int);
+ 
+truncate Salesperson;
+insert into Salesperson values (1, 'John', 100000, 6, '2006-04-01');
+insert into Salesperson values (2, 'Amy',  120000, 5, '2010-05-01');
+insert into Salesperson values (3, 'Mark', 65000, 12, '2008-12-25');
+insert into Salesperson values (4, 'Pam',  25000, 25, '2005-01-01');
+insert into Salesperson values (5, 'Alex', 50000, 10, '2007-02-03');
+
+insert into Company values (1, 'RED', 'Boston');
+insert into Company values (2, 'ORANGE', 'New York');
+insert into Company values (3, 'YELLOW', 'Boston');
+insert into Company values (4, 'GREEN', 'Austin');
+
+insert into Orders values (1, '2014-01-01', 3, 4, 100000);
+insert into Orders values (2, '2014-02-01', 4, 5, 5000);
+insert into Orders values (3, '2014-03-01', 1, 1, 50000);
+insert into Orders values (4, '2014-04-01', 1, 4, 25000);
+
+
+```
+
+
 
 ```sql
 select name
@@ -3818,6 +3953,34 @@ employee_id 为 1 和 3 的员工在 project_id 为 1 的项目中拥有最丰�
 
 
 
+```mysql
+create table Project
+(project_id int,
+ employee_id int,
+ primary key(project_id, employee_id));
+ 
+drop table Employee;
+create table Employee
+(employee_id int,
+ name varchar(20),
+ experience_years int,
+ primary key (employee_id));
+
+insert into Project values (1, 1);
+insert into Project values (1, 2);
+insert into Project values (1, 3);
+insert into Project values (2, 1);
+insert into Project values (2, 4);
+
+insert into Employee values (1, 'Khaled', 3);
+insert into Employee values (2, 'Ali',    2);
+insert into Employee values (3, 'John',   1);
+insert into Employee values (4, 'Doe',    2);
+
+```
+
+
+
 ```sql
 select project_id ,employee_id
 from(
@@ -3987,6 +4150,37 @@ Result table:
 +-------------+
 id 为 1 的买家购买了一部 S8，但是却没有购买 iPhone，而 id 为 3 的买家却同时购买了这 2 部手机。
 ```
+
+
+
+```mysql
+create table Product
+(product_id int,
+ product_name varchar(10),
+ unit_price int,
+ primary key (product_id));
+
+create table Sales
+(seller_id int,
+ product_id int,
+ buyer_id int,
+ sale_date date,
+ quantity int,
+ price int);
+
+insert into Product values (1, 'S8', 1000);
+insert into Product values (2, 'G4', 800);
+insert into Product values (3, 'iPhone', 1400);
+
+insert into Sales values (1, 1, 1, '2019-01-21', 2, 2000);
+insert into Sales values (1, 2, 2, '2019-02-17', 1, 800);
+insert into Sales values (2, 2, 3, '2019-06-02', 1, 800);
+insert into Sales values (3, 3, 4, '2019-05-13', 2, 2800);
+```
+
+
+
+
 
 ```sql
 select t.buyer_id from(
@@ -4417,6 +4611,7 @@ Result 表：
 ```
 
 ```sql
+
 select student_id,course_id ,grade
 from (
 select student_id,course_id ,grade,
@@ -4809,6 +5004,31 @@ Result table:
 
 
 
+```mysql
+create table Activity
+(user_id int,
+ session_id int,
+ activity_date date,
+ activity_type enum('open_session', 'end_session', 'scroll_down', 'send_message'));
+
+insert into Activity values (1, 1, '2019-07-20', 'open_session');
+insert into Activity values (1, 1, '2019-07-20', 'scroll_down');
+insert into Activity values (1, 1, '2019-07-20', 'end_session');
+insert into Activity values (2, 4, '2019-07-20', 'open_session');
+insert into Activity values (2, 4, '2019-07-21', 'send_message');
+insert into Activity values (2, 4, '2019-07-21', 'end_session');
+insert into Activity values (3, 2, '2019-07-21', 'open_session');
+insert into Activity values (3, 2, '2019-07-21', 'send_message');
+insert into Activity values (3, 2, '2019-07-21', 'end_session');
+insert into Activity values (4, 3, '2019-06-25', 'open_session');
+insert into Activity values (4, 3, '2019-06-25', 'end_session');
+
+```
+
+
+
+
+
 ```sql
 select activity_date day,count(distinct user_id) active_users
 from Activity
@@ -4993,6 +5213,26 @@ Result table:
 | 5    |
 | 6    |
 +------+
+```
+
+
+
+```mysql
+create table Views
+(article_id int,
+ author_id int,
+ viewer_id int,
+ view_date date);
+ -- 同一人的 author_id 与 viewer_id 相同
+ 
+insert into Views values (1, 3, 5, '2019-08-01');
+insert into Views values (1, 3, 6, '2019-08-02');
+insert into Views values (2, 7, 7, '2019-08-01');
+insert into Views values (2, 7, 6, '2019-08-02');
+insert into Views values (4, 7, 1, '2019-07-22');
+insert into Views values (3, 4, 4, '2019-07-21');
+insert into Views values (3, 4, 4, '2019-07-21');
+
 ```
 
 
@@ -9675,22 +9915,62 @@ Result 表:
 Winston 在2020年6月花费了$300(300 * 1), 在7月花费了$100(10 * 1 + 45 * 2).
 Jonathan 在2020年6月花费了$600(300 * 2), 在7月花费了$20(2 * 10).
 Moustafa 在2020年6月花费了$110 (10 * 2 + 45 * 2), 在7月花费了$0.
+
 ```
 
+```mysql
+drop table if EXISTS Customers;
+drop table if EXISTS Product;
+drop table if EXISTS Orders;
+Create table If Not Exists Customers (customer_id int, name varchar(255),country varchar(255));
+Create table If Not Exists Product (product_id int, description varchar(255), price int);
+Create table If Not Exists Orders (order_id int, customer_id int,product_id int,order_date date, quantity int);
+Truncate table Customers;
+Truncate table Product;
+Truncate table Orders;
+
+insert into Customers values (1, 'Winston', 'USA');
+insert into Customers values (2, 'Jonathan', 'Peru');
+insert into Customers values (3, 'Moustafa', 'Egypt');
+
+insert into Product values (10, 'LC Phone', 300);
+insert into Product values (20, 'LC T-Shirt', 10);
+insert into Product values (30, 'LC Book', 45);
+insert into Product values (40, 'LC Keychain', 2);
+
+
+insert into Orders values (1, 1, 10, '2020-06-10', 1);
+insert into Orders values (2, 1, 20, '2020-07-01', 1);
+insert into Orders values (3, 1, 30, '2020-07-08', 2);
+insert into Orders values (4, 2, 10, '2020-06-15', 2);
+insert into Orders values (5, 2, 40, '2020-07-01', 10);
+insert into Orders values (6, 2, 20, '2020-06-24', 2);
+insert into Orders values (7, 3, 30, '2020-06-25', 2);
+insert into Orders values (9, 3, 30, '2020-05-08', 3);
+
+SELECT * FROM Customers;
+SELECT * FROM Product;
+SELECT * FROM Orders;
+```
+
+
+
 ```sql
+
+-- 注意，不能去掉month()
 select customer_id,name
 from Customers
 where customer_id in
 (select customer_id
-    from
-        (select customer_id, month(order_date) as month , sum(quantity*price) as total
-        from Orders o left join Product p on o.product_id = p.product_id
-        where month(order_date) = 6 or month(order_date)=7
-        group by customer_id,month(order_date)
-        ) as t1
-    where total >=100
-    group by customer_id
-    having count(*)>=2
+from
+   (select customer_id, month(order_date) mon , sum(quantity*price) total
+    from Orders o left join Product p on o.product_id = p.product_id
+    where month(order_date) = 6 or month(order_date)=7
+    group by customer_id,month(order_date)
+   ) as t1
+where total >=100
+group by customer_id
+having count(*)>=2
 )
 ```
 
@@ -9943,6 +10223,39 @@ We sort the result table by customer_name in ascending order, by customer_id in 
 **Follow-up:**
 Can you write a general solution for the most recent `n` orders?
 
+
+
+```mysql
+--https://leetcode.cn/problems/the-most-recent-three-orders/
+drop table if EXISTS Customers;
+drop table if EXISTS Orders;
+Create table If Not Exists Customers (customer_id int, name varchar(255));
+Create table If Not Exists Orders (order_id int, order_date date, customer_id int, cost int);
+
+
+insert into Customers values (1,'Winston');
+insert into Customers values (2,'Jonathan');
+insert into Customers values (3,'Annabelle');
+insert into Customers values (4,'Marwan');
+insert into Customers values (5,'Khaled');
+
+insert into Orders values  (1,'2020-07-31',1,30);
+insert into Orders values  (2,'2020-07-30',2,40);
+insert into Orders values  (3,'2020-07-31',3,70);
+insert into Orders values  (4,'2020-07-29',4,100);
+insert into Orders values  (5,'2020-06-10',1,1010);
+insert into Orders values  (6,'2020-08-01',2,102);
+insert into Orders values  (7,'2020-08-01',3,111);
+insert into Orders values  (8,'2020-08-03',1,99);
+insert into Orders values  (9,'2020-08-07',2,32);
+insert into Orders values  (10,'2020-07-15',1,2);
+
+select * from Customers;
+select * from Orders;
+```
+
+
+
 ```sql
 select name customer_name ,customer_id,order_id,order_date
 from (
@@ -9953,6 +10266,8 @@ on o.customer_id=c.customer_id
 where rk <=3
 order by customer_name ,customer_id,order_date desc
 ```
+
+
 
 #### [1543. Fix Product Name Format](https://leetcode-cn.com/problems/fix-product-name-format/)
 
