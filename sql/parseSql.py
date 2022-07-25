@@ -4,11 +4,10 @@ if __name__ == '__main__':
     pre = "insert into Customers values"
     str_line = [1]
     str = """
-| 1           | Winston   |
-| 2           | Jonathan  |
-| 3           | Annabelle |
-| 4           | Marwan    |
-| 5           | Khaled    |
+| 1           | Alice         |
+| 4           | Bob           |
+| 5           | Charlie       |
++-------------+---------------+
 """
     lines = str.split("\n")
     res_no_str = []
