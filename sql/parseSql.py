@@ -1,13 +1,20 @@
 
 
 if __name__ == '__main__':
-    pre = "insert into Customers values"
-    str_line = [1]
+    pre = "insert into AcceptedRides values"
+    str_line = []
     str = """
-| 1           | Alice         |
-| 4           | Bob           |
-| 5           | Charlie       |
-+-------------+---------------+
+| 10      | 10        | 63            | 38            |
+| 13      | 10        | 73            | 96            |
+| 7       | 8         | 100           | 28            |
+| 17      | 7         | 119           | 68            |
+| 20      | 1         | 121           | 92            |
+| 5       | 7         | 42            | 101           |
+| 2       | 4         | 6             | 38            |
+| 11      | 8         | 37            | 43            |
+| 15      | 8         | 108           | 82            |
+| 12      | 8         | 38            | 34            |
+| 14      | 1         | 90            | 74            |
 """
     lines = str.split("\n")
     res_no_str = []
