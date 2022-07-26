@@ -10862,6 +10862,63 @@ Calls 表：
 用户 3 和 4 打过 4 次电话，总时长为 999 (100 + 200 + 200 + 499)
 ```
 
+用的 abs(  )  和 +:
+
+```mysql
+select
+    min(from_id) person1,max(to_id) person2,count(duration) call_count,sum(duration) total_duration
+    -- 分组后会有 类似于 1,2 或者 2,1的数据 用 min() 和 max() 保证 person1 < person2
+from
+    Calls
+group by abs(from_id-to_id),from_id+to_id -- 两数之差的绝对值相同,且两数之和相同,则两个数的组合是唯一的
+```
+
+
+
+
+用的 if:
+
+```mysql
+SELECT
+    person1,person2,
+    count(*) call_count,
+    sum(duration) total_duration
+FROM (
+         SELECT
+             IF(from_id>to_id, to_id, from_id) person1,
+             IF(from_id>to_id,from_id,to_id) person2,
+             duration
+         FROM calls
+     ) c
+GROUP BY
+    person1, person2
+```
+
+union all:
+
+```mysql
+SELECT tmp.person1,tmp.person2,COUNT(1) call_count,SUM(duration) total_duration FROM(
+                                                                                        SELECT from_id person1,to_id person2,duration FROM calls WHERE from_id<to_id
+                                                                                        UNION ALL
+                                                                                        SELECT to_id person1,from_id person2,duration FROM calls WHERE from_id>to_id
+                                                                                    ) tmp
+GROUP BY tmp.person1,tmp.person2
+```
+
+用的least() 和 greatest():
+
+```mysql
+select
+    from_id as person1,
+    to_id as person2,
+    count(1) as call_count,
+    sum(duration) as total_duration
+from calls
+group by least(from_id, to_id),greatest(from_id, to_id)
+```
+
+
+
 
 
 

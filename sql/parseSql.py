@@ -1,20 +1,17 @@
 
 
 if __name__ == '__main__':
-    pre = "insert into AcceptedRides values"
+    table = "Calls"
+    pre = "insert into {} values".format(table)
     str_line = []
     str = """
-| 10      | 10        | 63            | 38            |
-| 13      | 10        | 73            | 96            |
-| 7       | 8         | 100           | 28            |
-| 17      | 7         | 119           | 68            |
-| 20      | 1         | 121           | 92            |
-| 5       | 7         | 42            | 101           |
-| 2       | 4         | 6             | 38            |
-| 11      | 8         | 37            | 43            |
-| 15      | 8         | 108           | 82            |
-| 12      | 8         | 38            | 34            |
-| 14      | 1         | 90            | 74            |
+| 1       | 2     | 59       |
+| 2       | 1     | 11       |
+| 1       | 3     | 20       |
+| 3       | 4     | 100      |
+| 3       | 4     | 200      |
+| 3       | 4     | 200      |
+| 4       | 3     | 499      |
 """
     lines = str.split("\n")
     res_no_str = []
@@ -65,6 +62,7 @@ if __name__ == '__main__':
         res.append(one_res)
     for i in res:
         print(pre + " (" + i + ");")
+    print("select * from {};".format(table))
 
 
 
