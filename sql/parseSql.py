@@ -1,7 +1,7 @@
 
 
 if __name__ == '__main__':
-    table = "Calls"
+    table = "UserVisits"
     pre = "insert into {} values".format(table)
     str_line = []
     str = """

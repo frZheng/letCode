@@ -10862,6 +10862,26 @@ Calls 表：
 用户 3 和 4 打过 4 次电话，总时长为 999 (100 + 200 + 200 + 499)
 ```
 
+```mysql
+drop table if EXISTS Calls;
+Create table If Not Exists Calls (from_id int, to_id int, duration int);
+
+insert into Calls values (1,2,59);
+insert into Calls values (2,1,11);
+insert into Calls values (1,3,20);
+insert into Calls values (3,4,100);
+insert into Calls values (3,4,200);
+insert into Calls values (3,4,200);
+insert into Calls values (4,3,499);
+
+select * from Calls;
+
+```
+
+
+
+
+
 用的 abs(  )  和 +:
 
 ```mysql
@@ -10923,13 +10943,99 @@ group by least(from_id, to_id),greatest(from_id, to_id)
 
 
 
-
-
-
-
 #### [1709. 访问日期之间最大的空档期（重点）](https://blog.csdn.net/m0_69157845/article/details/125565868)
 
 难度
+
+表： UserVisits
+
+```mysql
++-------------+------+
+| Column Name | Type |
++-------------+------+
+| user_id     | int  |
+| visit_date  | date |
++-------------+------+
+```
+
+
+该表没有主键。
+该表包含用户访问某特定零售商的日期日志。
+假设今天的日期是 '2021-1-1' 。
+
+编写 SQL 语句，对于每个 user_id ，求出每次访问及其下一个访问（若该次访问是最后一次，则为今天）之间最大的空档期天数 window 。
+
+返回结果表，按用户编号 user_id 排序。
+
+UserVisits 表：
+
+```mysql
+
++---------+------------+
+| user_id | visit_date |
++---------+------------+
+| 1       | 2020-11-28 |
+| 1       | 2020-10-20 |
+| 1       | 2020-12-3  |
+| 2       | 2020-10-5  |
+| 2       | 2020-12-9  |
+| 3       | 2020-11-11 |
++---------+------------+
+```
+
+结果表：
+
+```mysql
++---------+---------------+
+| user_id | biggest_window|
++---------+---------------+
+| 1       | 39            |
+| 2       | 65            |
+| 3       | 51            |
++---------+---------------+
+对于第一个用户，问题中的空档期在以下日期之间：
+    - 2020-10-20 至 2020-11-28 ，共计 39 天。
+    - 2020-11-28 至 2020-12-3 ，共计 5 天。
+    - 2020-12-3 至 2021-1-1 ，共计 29 天。
+由此得出，最大的空档期为 39 天。
+对于第二个用户，问题中的空档期在以下日期之间：
+    - 2020-10-5 至 2020-12-9 ，共计 65 天。
+    - 2020-12-9 至 2021-1-1 ，共计 23 天。
+由此得出，最大的空档期为 65 天。
+对于第三个用户，问题中的唯一空档期在 2020-11-11 至 2021-1-1 之间，共计 51 天。
+```
+
+```mysql
+
+```
+
+
+
+
+
+
+
+```mysql
+ 
+select
+user_id,max(days) biggest_window
+from
+(
+select
+user_id, datediff(lead(visit_date,1,'2021-01-01') over(partition by user_id order by visit_date),visit_date ) days
+from
+UserVisits
+) s1
+group by
+user_id
+order by user_id
+```
+
+
+
+
+
+
 
 #### [1811. 寻找面试候选人（重点）](https://blog.csdn.net/m0_69157845/article/details/125576849)
 
