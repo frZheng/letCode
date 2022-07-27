@@ -1,17 +1,16 @@
 
 
 if __name__ == '__main__':
-    table = "Contests"
+    table = "Experiments"
     pre = "insert into {} values".format(table)
-    str_line = []
+    str_line = [1,2]
     str = """
-| 190        | 1          | 5            | 2            |
-| 191        | 2          | 3            | 5            |
-| 192        | 5          | 2            | 3            |
-| 193        | 1          | 3            | 5            |
-| 194        | 4          | 5            | 2            |
-| 195        | 4          | 2            | 1            |
-| 196        | 1          | 5            | 2            |
+| 4             | IOS      | Programming     |
+| 13            | IOS      | Sports          |
+| 14            | Android  | Reading         |
+| 8             | Web      | Reading         |
+| 12            | Web      | Reading         |
+| 18            | Web      | Programming     |
 """
     lines = str.split("\n")
     res_no_str = []
