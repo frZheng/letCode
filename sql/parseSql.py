@@ -1,16 +1,17 @@
 
 
 if __name__ == '__main__':
-    table = "UserVisits"
+    table = "Contests"
     pre = "insert into {} values".format(table)
-    str_line = [1]
+    str_line = []
     str = """
-| 1       | 2020-11-28 |
-| 1       | 2020-10-20 |
-| 1       | 2020-12-3  |
-| 2       | 2020-10-5  |
-| 2       | 2020-12-9  |
-| 3       | 2020-11-11 |
+| 190        | 1          | 5            | 2            |
+| 191        | 2          | 3            | 5            |
+| 192        | 5          | 2            | 3            |
+| 193        | 1          | 3            | 5            |
+| 194        | 4          | 5            | 2            |
+| 195        | 4          | 2            | 1            |
+| 196        | 1          | 5            | 2            |
 """
     lines = str.split("\n")
     res_no_str = []
