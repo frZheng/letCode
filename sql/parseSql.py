@@ -1,16 +1,15 @@
 
 
 if __name__ == '__main__':
-    table = "Experiments"
+    table = "Exam"
     pre = "insert into {} values".format(table)
-    str_line = [1,2]
+    str_line = []
     str = """
-| 4             | IOS      | Programming     |
-| 13            | IOS      | Sports          |
-| 14            | Android  | Reading         |
-| 8             | Web      | Reading         |
-| 12            | Web      | Reading         |
-| 18            | Web      | Programming     |
+| 975   | 10            |
+| 966   | 60            |
+| 844   | 76            |
+| 749   | 76            |
+| 744   | 100           |
 """
     lines = str.split("\n")
     res_no_str = []

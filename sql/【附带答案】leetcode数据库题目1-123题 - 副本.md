@@ -11322,4 +11322,129 @@ group by platform,experiment_name;
 
 #### [1988.找出每所学校的最低分数要求(重点）](https://leetcode-cn.com/problems/the-most-recent-orders-for-each-product/)
 
-难度
+难表： Schools
+
+```mysql
++-------------+------+
+| Column Name | Type |
++-------------+------+
+| school_id   | int  |
+| capacity    | int  |
++-------------+------+
+
+```
+
+school_id 是该表的主键。
+此表包含了一些学校的容纳能力。容纳能力指的是学校能够接纳学生的最大数量。
+
+
+
+表： Exam
+
+```mysql
++---------------+------+
+| Column Name   | Type |
++---------------+------+
+| score         | int  |
+| student_count | int  |
++---------------+------+
+```
+
+score 是该表的主键。
+表中每一行表示有 student_count 名学生在考试中至少获得了 score 分。
+表中的数据在逻辑上是正确的，即记录了高score的行相比记录了低score的行拥有相同或更少的student_count。
+也就是说，对于表中的i行与j行，如果scorei > scorej，那么student_counti <= student_countj
+每年，学校会公布学生申请所需的最低分数要求。学校根据所有学生的考试成绩来决定其最低分数要求。
+
+学校希望确保即使每一个满足分数要求的学生都申请该学校，学校也有足够的能力接纳每一个学生。
+学校也希望尽可能多的学生能申请该学校。
+学校必须使用在 Exam 表中的 score 来作为最低分数要求。
+编写一个SQL查询来查询每所学校的最低分数要求。如果同时有多个score值满足上述要求，则选择其中最小的一个。如果数据不足以决定最低分数要求，那么输出 -1。
+
+返回的结果表可以按任意顺序排序。
+
+查询结果格式如下例所示：
+
+示例：
+
+输入:
+Schools 表:
+
+```mysql
++-----------+----------+
+| school_id | capacity |
++-----------+----------+
+| 11        | 151      |
+| 5         | 48       |
+| 9         | 9        |
+| 10        | 99       |
++-----------+----------+
+```
+
+Exam 表:
+
+```mysql
++-------+---------------+
+| score | student_count |
++-------+---------------+
+| 975   | 10            |
+| 966   | 60            |
+| 844   | 76            |
+| 749   | 76            |
+| 744   | 100           |
++-------+---------------+
+```
+
+输出:
+
+```mysql
++-----------+-------+
+| school_id | score |
++-----------+-------+
+| 5         | 975   |
+| 9         | -1    |
+| 10        | 749   |
+| 11        | 744   |
++-----------+-------+
+```
+
+解释： 
+
+- School 5：学校的容纳能力为 48 。选择 975 作为最低分数要求，因为学校最多会收到 10 份申请，这在学校的容纳能力以内。
+- School 10：学校的容纳能力为 99 。可以选择 844 或 749 作为最低分数要求，因为学校最多会收到 76 份申请，这在学校的容纳能力以内。又因为 749 是所有可选项中最小的，因此我们选择 749 。
+- School 11：学校的容纳能力为 151 。选择 744 作为最低分数要求，因为学校最多会收到 100 份申请，这在学校的容纳能力以内。
+- School 9：给出的数据不足以确定最低分数要求。如果选择 975 作为最低分数要求，学校可能会收到 10 份申请，然而学校的容纳能力只有 9 。我们没有关于更高分数的信息，因此我们返回 -1 。
+
+```mysql
+drop table if EXISTS Schools;
+Create table If Not Exists Schools (school_id int, capacity int);
+drop table if EXISTS Exam ;
+Create table If Not Exists Exam (score int, student_count int);
+
+insert into Schools values (11,151);
+insert into Schools values (5,48);
+insert into Schools values (9,9);
+insert into Schools values (10,99);
+select * from Schools;
+
+insert into Exam values (975,10);
+insert into Exam values (966,60);
+insert into Exam values (844,76);
+insert into Exam values (749,76);
+insert into Exam values (744,100);
+select * from Exam;
+
+```
+
+
+
+```mysql
+ 
+select
+s.school_id,ifnull(min(e.score),-1) score
+from
+Schools s left join Exam e
+on s.capacity >= e.student_count
+group by s.school_id
+```
+
