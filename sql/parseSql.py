@@ -1,15 +1,16 @@
 
 
 if __name__ == '__main__':
-    table = "Exam"
+    table = "Scores"
     pre = "insert into {} values".format(table)
     str_line = []
     str = """
-| 975   | 10            |
-| 966   | 60            |
-| 844   | 76            |
-| 749   | 76            |
-| 744   | 100           |
+| 1  | 3.50  |
+| 2  | 3.65  |
+| 3  | 4.00  |
+| 4  | 3.85  |
+| 5  | 4.00  |
+| 6  | 3.65  |
 """
     lines = str.split("\n")
     res_no_str = []

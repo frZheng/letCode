@@ -313,7 +313,7 @@ Id是该表的主键。
 
 ```
 +----+-------+
-| Id | Score |
+| Id | score |
 +----+-------+
 | 1  | 3.50  |
 | 2  | 3.65  |
@@ -328,7 +328,7 @@ Id是该表的主键。
 
 ```
 +-------+------+
-| Score | Rank |
+| score | Rank |
 +-------+------+
 | 4.00  | 1    |
 | 4.00  | 1    |
@@ -342,15 +342,21 @@ Id是该表的主键。
 **重要提示：**对于 MySQL 解决方案，如果要转义用作列名的保留字，可以在关键字之前和之后使用撇号。例如 **`Rank`**
 
 ```mysql
-
+drop table if EXISTS Scores;
+Create table If Not Exists Scores (id int, score decimal(9,2));
+insert into Scores values (1,3.50);
+insert into Scores values (2,3.65);
+insert into Scores values (3,4.00);
+insert into Scores values (4,3.85);
+insert into Scores values (5,4.00);
+insert into Scores values (6,3.65);
+select * from Scores;
 ```
 
 
 
 ```sql
-select Score,
-dense_rank() over(order by Score desc) `rank`
-from Scores
+select Score, dense_rank() over(order by Score desc) `rank` from Scores;
 ```
 
 
@@ -360,22 +366,6 @@ from Scores
 难度中等
 
 SQL架构
-
-```sql
-drop table if exist Logs;
-Create table If Not Exists Logs (id int, num int);
-Truncate table Logs;
-insert into Logs (id, num) values ('1', '1');
-insert into Logs (id, num) values ('2', '1');
-insert into Logs (id, num) values ('3', '1');
-insert into Logs (id, num) values ('4', '2');
-insert into Logs (id, num) values ('5', '1');
-insert into Logs (id, num) values ('6', '2');
-insert into Logs (id, num) values ('7', '2');
-select * from logs;
-```
-
-
 
 编写一个 SQL 查询，查找所有至少连续出现三次的数字。
 
@@ -401,6 +391,22 @@ select * from logs;
 +-----------------+
 | 1               |
 +-----------------+
+```
+
+
+
+```mysql
+drop table if exist Logs;
+Create table If Not Exists Logs (id int, num int);
+Truncate table Logs;
+insert into Logs (id, num) values ('1', '1');
+insert into Logs (id, num) values ('2', '1');
+insert into Logs (id, num) values ('3', '1');
+insert into Logs (id, num) values ('4', '2');
+insert into Logs (id, num) values ('5', '1');
+insert into Logs (id, num) values ('6', '2');
+insert into Logs (id, num) values ('7', '2');
+select * from logs;
 ```
 
 
@@ -563,6 +569,43 @@ where o.id is null
 难度中等
 
 SQL架构
+
+表： Employee
+
+```mysql
++--------------+---------+
+| 列名          | 类型    |
++--------------+---------+
+| id           | int     |
+| name         | varchar |
+| salary       | int     |
+| departmentId | int     |
++--------------+---------+
+id是此表的主键列。
+departmentId是Department表中ID的外键。
+此表的每一行都表示员工的ID、姓名和工资。它还包含他们所在部门的ID。
+```
+
+
+
+
+表： Department
+
+```msyql
++-------------+---------+
+| 列名         | 类型    |
++-------------+---------+
+| id          | int     |
+| name        | varchar |
++-------------+---------+
+id是此表的主键列。
+此表的每一行都表示一个部门的ID及其名称。
+```
+
+
+
+
+
 
 `Employee` 表包含所有员工信息，每个员工有其对应的 Id, salary 和 department Id。
 

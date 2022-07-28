@@ -1,1 +1,1 @@
-secondHighestSalary
+rankScores
