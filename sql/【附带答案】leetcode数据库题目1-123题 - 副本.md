@@ -201,6 +201,19 @@ SQL架构
 +---------------------+
 ```
 
+
+
+```mysql
+drop table if EXISTS Employee;
+Create table If Not Exists Employee (id int, salary int);
+Truncate table Employee;
+insert into Employee (id, salary) values ('1', '100');
+insert into Employee (id, salary) values ('2', '200');
+insert into Employee (id, salary) values ('3', '300');
+```
+
+
+
 ```sql
 SELECT
     IFNULL(
@@ -238,6 +251,15 @@ SELECT
 +------------------------+
 ```
 
+```mysql
+drop table if EXISTS Employee;
+Create table If Not Exists Employee (id int, salary int);
+Truncate table Employee;
+insert into Employee (id, salary) values ('1', '100');
+insert into Employee (id, salary) values ('2', '200');
+insert into Employee (id, salary) values ('3', '300');
+```
+
 
 
 ```sql
@@ -262,6 +284,28 @@ END
 难度中等
 
 SQL架构
+
+表: Scores
+
+```mysql
++-------------+---------+
+| Column Name | Type    |
++-------------+---------+
+| id          | int     |
+| score       | decimal |
++-------------+---------+
+```
+
+Id是该表的主键。
+该表的每一行都包含了一场比赛的分数。Score是一个有两位小数点的浮点值。
+
+
+编写 SQL 查询对分数进行排序。排名按以下规则计算:
+
+分数应按从高到低排列。
+如果两个分数相等，那么两个分数的排名应该相同。
+在排名相同的分数后，排名数应该是下一个连续的整数。换句话说，排名之间不应该有空缺的数字。
+按 score 降序返回结果表。
 
 编写一个 SQL 查询来实现分数排名。
 
@@ -296,6 +340,12 @@ SQL架构
 ```
 
 **重要提示：**对于 MySQL 解决方案，如果要转义用作列名的保留字，可以在关键字之前和之后使用撇号。例如 **`Rank`**
+
+```mysql
+
+```
+
+
 
 ```sql
 select Score,
