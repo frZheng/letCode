@@ -162,7 +162,7 @@ public class mysSort {
 //                }else {
 //                    return a[0] - b[0];
 //                }
-                for (int i = 0; i < a.length; ++i) {
+                for (int i = 1; i < a.length; ++i) {
                     if (a[i] != b[i]) {
                         return a[i] - b[i];//b[i] - a[i]降序
                     }
