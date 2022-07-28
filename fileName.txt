@@ -1,1 +1,1 @@
-rankScores
+departmentHighestSalary
