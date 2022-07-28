@@ -1,1 +1,1 @@
-https://leetcode.cn/problems/the-most-recent-orders-for-each-product/
+https://leetcode.cn/problems/second-highest-salary/
