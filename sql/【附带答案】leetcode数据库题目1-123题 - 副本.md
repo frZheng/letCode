@@ -587,8 +587,6 @@ departmentId是Department表中ID的外键。
 ```
 
 
-
-
 表： Department
 
 ```msyql
@@ -601,11 +599,6 @@ departmentId是Department表中ID的外键。
 id是此表的主键列。
 此表的每一行都表示一个部门的ID及其名称。
 ```
-
-
-
-
-
 
 `Employee` 表包含所有员工信息，每个员工有其对应的 Id, salary 和 department Id。
 
@@ -637,9 +630,11 @@ id是此表的主键列。
 +------------+----------+--------+
 | Department | Employee | Salary |
 +------------+----------+--------+
-| IT         | Max      | 90000  |
+| IT         | Jim      | 90000  |
 | Sales      | Henry    | 80000  |
+| IT         | Max      | 90000  |
 +------------+----------+--------+
+
 ```
 
 
