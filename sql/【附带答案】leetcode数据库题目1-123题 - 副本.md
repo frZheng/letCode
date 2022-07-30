@@ -727,6 +727,28 @@ SQL架构
 
 IT 部门中，Max 获得了最高的工资，Randy 和 Joe 都拿到了第二高的工资，Will 的工资排第三。销售部门（Sales）只有两名员工，Henry 的工资最高，Sam 的工资排第二。
 
+```mysql
+drop table if EXISTS Employee;
+drop table if EXISTS Department;
+Create table If Not Exists Employee (id int, name varchar(255),salary int,departmentId int);
+Create table If Not Exists Department (id int, name varchar(255));
+Truncate table Employee;
+insert into Employee (id, name, salary ,departmentId) values (1, 'Joe', 85000, 1);
+insert into Employee (id, name, salary ,departmentId) values (2, 'Henry',80000,2);
+insert into Employee (id, name, salary ,departmentId) values (3, 'Sam', 60000, 2);
+insert into Employee (id, name, salary ,departmentId) values (4, 'Max', 90000, 1);
+insert into Employee (id, name, salary ,departmentId) values (5, 'Janet',69000, 1);
+insert into Employee (id, name, salary ,departmentId) values (6, 'Randy', 85000, 1);
+insert into Employee (id, name, salary ,departmentId) values (7, 'Will', 70000,1);
+
+Truncate table Department;
+insert into Department (id, name) values (1, 'IT');
+insert into Department (id, name) values (2, 'Sales');
+
+select * from Employee;
+select * from Department;
+```
+
 
 
 ```sql
@@ -778,7 +800,19 @@ Id 是这个表的主键。
 
 - 使用 `delete` 语句。
 
-  
+
+```mysql
+drop table if EXISTS Person;
+Create table If Not Exists Person (Id int, Email varchar(255));
+Truncate table Person;
+insert into Person (id, email) values ('1', 'john@example.com');
+insert into Person (id, email) values ('2', 'bob@example.com');
+insert into Person (id, email) values ('3', 'john@example.com');
+
+select * from Person;
+```
+
+
 
 ```sql
 DELETE p1 FROM Person p1,
@@ -788,6 +822,13 @@ WHERE
 ```
 
 > 注意是删除 ，不是查询
+
+```mysql
+delete from Person
+where Email in (select * from (select Email from Person group by Email having count(*) > 1) b)
+  and Id not in (select * from (select min(Id) as id from Person group by Email having count(*) > 1) a)
+select * from Person;
+```
 
 
 
