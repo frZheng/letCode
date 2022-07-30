@@ -1,1 +1,1 @@
-https://leetcode.cn/problems/department-highest-salary/
+https://leetcode.cn/problems/department-top-three-salaries/

@@ -17,10 +17,14 @@ insert into Department values (2,'Sales');
 select * from Department;
 
 -- 部门工资最高的员工
-
-select Department,name,salary from(
-select d.name Department, e.name name, e.salary salary from Employee e left join Department d on e.departmentId = d.id
-) wh
+select Department,Employee,Salary
+from (
+         select d.Name  Department,e.Name Employee, e.Salary,
+                rank() over(partition by d.id order by Salary desc) rk // 这句话在这里就是筛选条件
+         from Employee e join Department d
+                              on e.DepartmentId=d.id
+     )tmp
+where rk = 1
 
 
 
