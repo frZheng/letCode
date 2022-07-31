@@ -1,12 +1,18 @@
 
 
 if __name__ == '__main__':
-    table = "Department"
+    table = "Users"
     pre = "insert into {} values".format(table)
-    str_line = [1]
+    str_line = [1,2]
     str = """
-| 1  | IT       |
-| 2  | Sales    |
+|    1     |   No   | client |
+|    2     |   Yes  | client |
+|    3     |   No   | client |
+|    4     |   No   | client |
+|    10    |   No   | driver |
+|    11    |   No   | driver |
+|    12    |   No   | driver |
+|    13    |   No   | driver |
 """
     lines = str.split("\n")
     res_no_str = []
