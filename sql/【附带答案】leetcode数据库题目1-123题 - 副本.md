@@ -1542,6 +1542,19 @@ SQL架构
 
 请编写一个查询来查找所有数字的中位数并将结果命名为 `median` 。
 
+```mysql
+drop table if EXISTS Employee;
+CREATE TABLE If Not Exists Employee (Id INT, Company varchar(50), Salary int);
+
+insert into Numbers values (0,7);
+insert into Numbers values (1,1);
+insert into Numbers values (2,3);
+insert into Numbers values (3,1);
+select * from Numbers;
+```
+
+
+
 ```sql
 select 
     avg(cast(number as float)) median

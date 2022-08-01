@@ -1,1 +1,1 @@
-medianEmployeeSalary
+findMedianGivenFrequencyOfNumbers
