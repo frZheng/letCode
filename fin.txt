@@ -1,1 +1,1 @@
-https://leetcode.cn/problems/trips-and-users/
+https://leetcode.cn/problems/median-employee-salary/
