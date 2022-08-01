@@ -1,1 +1,1 @@
-https://leetcode.cn/problems/median-employee-salary/
+https://leetcode.cn/problems/find-median-given-frequency-of-numbers/

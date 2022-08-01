@@ -1,18 +1,27 @@
 
 
 if __name__ == '__main__':
-    table = "Users"
+    table = "Numbers"
     pre = "insert into {} values".format(table)
-    str_line = [1,2]
+    str_line = [1]
     str = """
-|    1     |   No   | client |
-|    2     |   Yes  | client |
-|    3     |   No   | client |
-|    4     |   No   | client |
-|    10    |   No   | driver |
-|    11    |   No   | driver |
-|    12    |   No   | driver |
-|    13    |   No   | driver |
+|1    | A          | 2341   |
+|2    | A          | 341    |
+|3    | A          | 15     |
+|4    | A          | 15314  |
+|5    | A          | 451    |
+|6    | A          | 513    |
+|7    | B          | 15     |
+|8    | B          | 13     |
+|9    | B          | 1154   |
+|10   | B          | 1345   |
+|11   | B          | 1221   |
+|12   | B          | 234    |
+|13   | C          | 2345   |
+|14   | C          | 2645   |
+|15   | C          | 2645   |
+|16   | C          | 2652   |
+|17   | C          | 65     |
 """
     lines = str.split("\n")
     res_no_str = []
