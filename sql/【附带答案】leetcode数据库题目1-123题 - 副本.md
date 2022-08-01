@@ -1062,6 +1062,20 @@ Result 表：
 +-----------+-------------+
 ```
 
+```mysq
+drop table if EXISTS activity;
+CREATE TABLE If Not Exists activity (player_id INT, device_id INT, event_date DATE, games_played INT, PRIMARY KEY (player_id, event_date));
+Truncate table  activity;
+INSERT INTO Activity VALUES(1,2,'2016-03-01',5);
+INSERT INTO Activity VALUES(1,2,'2016-05-02',6);
+INSERT INTO Activity VALUES(2,3,'2017-06-25',1);
+INSERT INTO Activity VALUES(3,1,'2016-03-02',0);
+INSERT INTO Activity VALUES(3,4,'2018-07-03',5);
+
+```
+
+
+
 1.
 
 ```sql
@@ -1132,6 +1146,18 @@ Result table:
 | 2         | 3         |
 | 3         | 1         |
 +-----------+-----------+
+```
+
+```mysql
+drop table if EXISTS activity;
+CREATE TABLE If Not Exists activity (player_id INT, device_id INT, event_date DATE, games_played INT, PRIMARY KEY (player_id, event_date));
+Truncate table  activity;
+INSERT INTO Activity VALUES(1,2,'2016-03-01',5);
+INSERT INTO Activity VALUES(1,2,'2016-05-02',6);
+INSERT INTO Activity VALUES(2,3,'2017-06-25',1);
+INSERT INTO Activity VALUES(3,1,'2016-03-02',0);
+INSERT INTO Activity VALUES(3,4,'2018-07-03',5);
+
 ```
 
 
@@ -1294,6 +1320,23 @@ Result table:
 | 0.33      |
 +-----------+
 只有 ID 为 1 的玩家在第一天登录后才重新登录，所以答案是 1/3 = 0.33
+```
+
+```mysql
+drop table if EXISTS Activity;
+Create table If Not Exists Activity
+(player_id int,
+ device_id int,
+ event_date date,
+ games_played int,
+ primary key (player_id, event_date));
+ 
+insert into Activity values (1, 2, '2016-03-01', 5);
+insert into Activity values (1, 2, '2016-05-02', 6);
+insert into Activity values (2, 3, '2017-06-25', 1);
+insert into Activity values (3, 1, '2016-03-02', 0);
+insert into Activity values (3, 4, '2018-07-03', 5);
+
 ```
 
 
