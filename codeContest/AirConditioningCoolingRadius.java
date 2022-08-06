@@ -120,8 +120,13 @@ public class AirConditioningCoolingRadius {
         FileUtil.appendUtf8String(msg1.toString(), inPath);
         String outPath = path + String.valueOf(caseNum) + ".out";
         FileUtil.writeUtf8String(String.valueOf(res), outPath);
+//        Integer.parseInt("abc");
+//        Integer.valueOf("abc");
 //        Scanner sc = new Scanner(System.in);
-//        String next = sc.nextLine();
+//        String next = sc.nextLine(); // "123 123 "
+//        String[] s = next.split(" ");
+//        Integer.valueOf(s[0])
+
 //        String[] s = next.split(",");
 //        int size = s.length;
 //        StringBuilder msg = new StringBuilder();
