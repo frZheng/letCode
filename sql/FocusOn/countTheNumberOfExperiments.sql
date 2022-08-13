@@ -26,7 +26,7 @@ cross join
     select 'Reading' experiment_name
 )e
 )
--- select * from pe;
+select * from pe;
 select pe.platform,pe.experiment_name,count(w.platform) as num_experiments
 from pe left join Experiments as w using(platform,experiment_name)
 group by platform,experiment_name;
