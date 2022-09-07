@@ -1,1 +1,1 @@
-https://leetcode.cn/problems/find-median-given-frequency-of-numbers/.
+https://leetcode.cn/problems/find-median-given-frequency-of-numbers/
