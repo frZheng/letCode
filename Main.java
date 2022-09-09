@@ -29,9 +29,9 @@ public class Main {
 
         }
 
-        public int networkDelayTime (int[][] times, int n, int k) {
-            new HashMap<>()
-        }
+//        public int networkDelayTime (int[][] times, int n, int k) {
+//            new HashMap<>()
+//        }
     }
 
     public static void main(String[] args) {
