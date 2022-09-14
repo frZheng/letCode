@@ -3,41 +3,28 @@ import java.util.*;
 
 public class Main {
 
-    static class Solu{
-        Solu(){
 
-        }
-        public int res;
-        void dfs(int i, int level,int[][] triangle,int val){
-            if(level==triangle.length-1){
-                res = Math.max(res,val+triangle[level][i]);
-                if(i<triangle[level].length-1)
-                    res = Math.max(res,val+triangle[level][i+1]);
-            } else {
-//                System.out.println(i+" "+level);
-                dfs(i,level+1,triangle,triangle[level][i]+val);
-                dfs(i+1,level+1,triangle,triangle[level][i]+val);
-            }
-        }
-
-        public int maximumTotal (int[][] triangle) {
-            // write code here
-            res = Integer.MIN_VALUE;
-//            res=triangle[0][0];
-            dfs(0,0,triangle,0);
-            return res;
-
-        }
-
-//        public int networkDelayTime (int[][] times, int n, int k) {
-//            new HashMap<>()
-//        }
+    static boolean judge(String s){
+        int len = s.length();
+        boolean[] visit = new boolean[len];
+        s.su
+        int first=0;
+        for(int i =0;i<len)
     }
-
     public static void main(String[] args) {
-//        int[][] triangle = {{2}, {3,4}, {6,5,7}, {4,1,3,8}};
-//        Solu solu = new Solu();
-//        int res = solu.maximumTotal(triangle);
-//        System.out.println(res);
+        Scanner scanner = new Scanner(System.in);
+        Integer n = Integer.valueOf(scanner.nextLine());
+        for (int i =0;i < n; ++i){
+            boolean judge = judge(scanner.nextLine());
+            if(judge) System.out.println("No");
+            else System.out.println("Yes");
+        }
     }
 }
+
+1
+baab
+3
+abcdcba
+aab
+baab
