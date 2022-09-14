@@ -2,7 +2,12 @@ public class Father {
 
 
 
-//    public static void main(String[] args) {
+    public static void main(String[] args) {
+        Object o = new Object();
+        System.out.println(o.hashCode());
+        Long i11 = 3l;
+        Long i22 = 3l;
+        System.out.println(i11 == i22);// 输出 false
 //        Father father = new Father();
 //        Child child = new Child();
 //        try {
@@ -11,7 +16,7 @@ public class Father {
 //        } catch (Exception e){
 //            e.printStackTrace();
 //        }
-//    }
+    }
 //    public void test() throws RuntimeException{
 //        System.out.println("father");
 //    }
