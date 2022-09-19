@@ -28,7 +28,8 @@ import java.util.Scanner;
 12345
 98346
  */
-public class Main {
+public class xunlei101 {
+
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -55,9 +56,6 @@ public class Main {
                         System.out.println("NO");
                         break;
                     }
-                }
-                if(j>0 && flag){
-                    break;
                 }
 
                 strings.add(s);
